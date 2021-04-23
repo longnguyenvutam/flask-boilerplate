@@ -1,0 +1,10 @@
+flask
+bcrypt
+pymysql
+flask_login
+flask_migrate
+flask_wtf
+flask_sqlalchemy
+psycopg2-binary
+cryptography
+sqlalchemy
