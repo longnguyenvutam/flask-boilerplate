@@ -1,4 +1,4 @@
-# Flask boilerplae simple form
+# Flask boilerplae simple form with MySQL database
 
 ## Requirements
 Flask
