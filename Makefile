@@ -13,16 +13,19 @@ install:
 	pip3 install -r requirements.txt;
 
 dev:
+	[ ! -d logs ] && mkdir logs; \
 	. .venv/bin/activate; \
 	export FLASK_ENV=development; \
 	python3 simple_app.py
 
 prod:
+	[ ! -d logs ] && mkdir logs; \
 	. .venv/bin/activate; \
 	export FLASK_ENV=production; \
 	python3 simple_app.py
 
 db_upgrade:
+	[ ! -d logs ] && mkdir logs; \
 	. .venv/bin/activate; \
 	export FLASK_ENV=development; \
 	export FLASK_APP=simple_app.py; \
