@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
 # @Author: ubuntu
 # @Date:   2021-04-23 05:42:56
-# @Last Modified by:   ubuntu
-# @Last Modified time: 2021-04-23 06:38:44
+# @Last Modified by:   abpabab
+# @Last Modified time: 2021-04-26 06:32:52
 
 
 from bcrypt import gensalt, hashpw
 from flask_login import UserMixin
 from datetime import datetime
-from sqlalchemy import BINARY
+from sqlalchemy import (
+    Integer,
+    BINARY,
+    DateTime,
+    String
+    )
 from app import db, login_manager
 
 
@@ -19,14 +24,12 @@ class User(db.Model, UserMixin):
 
     __tablename__ = 'User'
 
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(100), unique=True, nullable=False)
-    password = db.Column(BINARY, nullable=False)
-    created_time = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_time = db.Column(
-        db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    resetpasswd_token = db.Column(db.String(100), nullable=True)
-    resetpasswd_time = db.Column(db.DateTime, onupdate=datetime.utcnow)
+    id                = db.Column(Integer, primary_key=True)
+    email             = db.Column(String(100), unique=True, nullable=False)
+    password          = db.Column(BINARY, nullable=False)
+    name              = db.Column(String(50), nullable=False)
+    created_time      = db.Column(DateTime, default=datetime.utcnow)
+    updated_time      = db.Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     def __init__(self, user_data):
         for key, value in user_data.items():

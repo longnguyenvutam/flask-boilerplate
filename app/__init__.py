@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: ubuntu
 # @Date:   2021-04-23 05:50:17
-# @Last Modified by:   ubuntu
-# @Last Modified time: 2021-04-23 06:53:51
+# @Last Modified by:   abpabab
+# @Last Modified time: 2021-04-26 06:46:52
 
 
 import pymysql
@@ -13,8 +13,9 @@ from importlib import import_module
 from logging import (
     basicConfig,
     getLogger,
-    StreamHandler)
-from flask_wtf.csrf import CSRFProtect
+    StreamHandler
+    )
+
 
 pymysql.install_as_MySQLdb()
 
@@ -24,7 +25,7 @@ login_manager = LoginManager()
 app = Flask(__name__)
 
 
-modules_list = ('home', 'welcome', 'user', 'base')
+modules_list = ('home', 'user', 'base')
 
 
 def register_extensions(app):
@@ -57,9 +58,6 @@ def configure_logs(app):
 
 def create_app(config, selenium=False):
     app.config.from_object(config)
-
-    csrf = CSRFProtect()
-    csrf.init_app(app)
 
     register_extensions(app)
     register_blueprints(app)
