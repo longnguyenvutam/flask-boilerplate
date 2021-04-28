@@ -14,20 +14,25 @@ from app.tasks import blueprint
 from app.tasks.models import Tasks
 
 @blueprint.route('/create',methods=['POST'])
-def create():
-
-
+def create(): 
+	"""
+	"""
 @blueprint.route('/getall',methods=['GET'])
 def getAll():
-
+	"""
+	"""
 
 @blueprint.route('/getone', methods=['GET'])
 def getOne():
-
+	"""
+	"""
 
 @blueprint.route('/edittask', methods=['PUT'])
 def editTask():
-
+	"""
+	"""
 
 @blueprint.route('/deletetask', methods=['DELETE'])
-def deleteTask()
+def deleteTask():
+	"""
+	"""
