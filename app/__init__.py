@@ -4,7 +4,7 @@
 # @Last Modified by:   abpabab
 # @Last Modified time: 2021-04-26 06:46:52
 
-
+import secrets
 import pymysql
 from flask import Flask
 from flask_login import LoginManager
@@ -23,7 +23,7 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 
 app = Flask(__name__)
-
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 modules_list = ('home', 'user', 'base','subtasks', 'tasks')
 

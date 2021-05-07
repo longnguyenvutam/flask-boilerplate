@@ -13,13 +13,12 @@ class SubTasks(db.Model, UserMixin):
 	__tablename__ = 'SubTasks'
 
 	id = db.Column(Integer,primary_key = True)
-	task_id = db.Column(Integer)
-	user_id = db.Column(Integer, nullable = False)
+	task_id = db.Column(Integer, db.ForeignKey('Tasks.id'))
 	name = db.Column(String(100), nullable = False)
 	description = db.Column(Text, nullable = False)
 	created_at = db.Column(DateTime, default = datetime.utcnow)
 	due_date = db.Column(DateTime, nullable = False)
-
+	status = db.Column(Integer, nullable = False, default = 0)
 	def __init__(self, subtasks_data):
-		for value, key in subtasks_data.items():
+		for key, value in subtasks_data.items():
 			setattr(self,key,value)

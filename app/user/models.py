@@ -4,8 +4,8 @@
 # @Last Modified by:   abpabab
 # @Last Modified time: 2021-04-26 06:32:52
 
-
-from bcrypt import gensalt, hashpw
+import hashlib
+from bcrypt import hashpw
 from flask_login import UserMixin
 from datetime import datetime
 from sqlalchemy import (
@@ -25,8 +25,8 @@ class User(db.Model, UserMixin):
     __tablename__ = 'User'
 
     id                = db.Column(Integer, primary_key=True)
-    email             = db.Column(String(100), unique=True, nullable=False)
-    password          = db.Column(BINARY, nullable=False)
+    username          = db.Column(String(100), unique=True, nullable=False)
+    password          = db.Column(String(32), nullable=False)
     name              = db.Column(String(50), nullable=False)
     created_time      = db.Column(DateTime, default=datetime.utcnow)
     updated_time      = db.Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -34,11 +34,11 @@ class User(db.Model, UserMixin):
     def __init__(self, user_data):
         for key, value in user_data.items():
             if key == 'password':
-                value = hashpw(value.encode('utf8'), gensalt())
+                value = hashlib.md5(value.encode('utf-8')).hexdigest()
             setattr(self, key, value)
 
     def __repr__(self):
-        return str(self.email)
+        return str(self.id)
 
 
 @login_manager.user_loader
